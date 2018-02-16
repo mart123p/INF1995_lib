@@ -32,10 +32,10 @@ PROJECTNAME=projet
 PRJSRC= main.cpp
 
 # Inclusions additionnels (ex: -I/path/to/mydir)
-INC= -Ilib/
+INC=-I../lib/
 
 # Libraires a lier (ex: -lmylib)
-LIBS= -lohboy
+LIBS=-lohboy
 
 # Niveau d'optimization
 # Utilisez s (size opt), 1, 2, 3 ou 0 (off)
@@ -85,7 +85,7 @@ CFLAGS=-I. -MMD $(INC) -g -mmcu=$(MCU) -O$(OPTLEVEL) \
 CXXFLAGS=-fno-exceptions     
 
 # Linker pour lier les librairies utilisees
-LDFLAGS=-Wl,-Map,$(TRG).map -mmcu=$(MCU)
+LDFLAGS=-Wl,-Map,$(TRG).map -mmcu=$(MCU) -L../lib/
 
 
 
@@ -133,7 +133,7 @@ all: $(TRG)
 # Implementation de la cible
 $(TRG): $(OBJDEPS)
 	$(CC) $(LDFLAGS) -o $(TRG) $(OBJDEPS) \
-	-lm $(LIBS)
+	-lm $(LIBS) -I..\lib\
 
 # Production des fichiers object
 # De C a objet

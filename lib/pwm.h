@@ -3,12 +3,12 @@
 
 #include <avr/io.h>
 #define F_CPU 8000000
-#include <avr/delay.h>
+#include <util/delay.h>
 
 /**
  * Set register for pwm
  */
-void pwm_init();
+void pwmINIT();
 
 /**
  * Set pwm signal to OCR1A
@@ -28,3 +28,5 @@ void setPwmB(uint8_t signal,bool wheelDirection);
  * Test all the functions in pwm.h
  */
 void testPwm();
+
+#endif

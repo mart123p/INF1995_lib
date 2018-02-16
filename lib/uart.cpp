@@ -1,6 +1,6 @@
 #include "uart.h"
 #include <avr/pgmspace.h>
-const char asciiNumbers[] PROGMEM = {'0','1','2','3','4','5','6','7','8','9'};
+const uint8_t asciiNumbers[] PROGMEM = {0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39};
 
 
 void uartSend(uint8_t data){
@@ -8,7 +8,7 @@ void uartSend(uint8_t data){
         UDR0 = data;
 }
 
-void uartINIT(){
+void initUART(){
 	// 2400 bauds. Nous vous donnons la valeur des deux
         // premier registres pour vous éviter des complications
 
@@ -45,12 +45,13 @@ void printUART(const int n){
 	for(uint8_t i = 0; i < size; i++){
 		rem = num %10;
 		num = num / 10;
-		uartSend(asciiNumbers[rem]);
+		uartSend(rem);
+		uartSend(pgm_read_byte(&asciiNumbers[rem]));
 	}
 }
 void printUART(const uint8_t n){
 	uint8_t size = 1;
-	uint8_t num = n;
+	unsigned int num = n;
 	uint8_t rem;
 	while((size * 10) < n){
 		size++;
@@ -64,7 +65,7 @@ void printUART(const uint8_t n){
 
 void printUART(const uint16_t n){
 	uint8_t size = 1;
-	uint16_t num = n;
+	unsigned int num = n;
 	uint8_t rem;
 	while((size * 10) < n){
 		size++;
@@ -77,7 +78,7 @@ void printUART(const uint16_t n){
 }
 void printUART(const uint32_t n){
 	uint8_t size = 1;
-        uint32_t num = n;
+        unsigned long num = n;
         uint8_t rem;
         while((size * 10) < n){
                 size++;
@@ -92,11 +93,14 @@ void printlnUART(){
 	uartSend('\n');
 }
 void testUART(){
+
+	initUART();
+	
 	//We check the number ouput
 	printUART(-23);
 	printlnUART();
 	
-	printUART(43242);
+	printUART(3242);
 	printlnUART();
 	
 	uint8_t x1 = 54;
