@@ -91,3 +91,29 @@ void printUART(const uint32_t n){
 void printlnUART(){
 	uartSend('\n');
 }
+void testUART(){
+	//We check the number ouput
+	printUART(-23);
+	printlnUART();
+	
+	printUART(43242);
+	printlnUART();
+	
+	uint8_t x1 = 54;
+	printUART(x1);
+	printlnUART();
+
+	uint16_t x2 = 5432;
+	printUART(x2);
+	printlnUART();
+
+	uint32_t x3 = 4677322;
+	printUART(x3);
+	printlnUART();
+
+	//Testing string output
+	printUART("this is a test",13);
+	printlnUART();
+	printUART("Done",4);
+}
+

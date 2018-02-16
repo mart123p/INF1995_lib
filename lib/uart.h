@@ -56,4 +56,9 @@ void printUART(const char c);
  */
 void printlnUART();
 
+/**
+ * Test all the uart functions. This method is mainly used for developpement
+ * @return void
+*/
+void testUART();
 #endif
