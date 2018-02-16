@@ -31,6 +31,23 @@ void printUART(const char* c, const uint8_t size){
 void printUART(const char c){
 	uartSend(c);
 }
+void printUART(const int n){
+	uint8_t size = 1;
+	int num = n;
+	if(n < 0){
+		num *= -1;
+		uartSend('-');
+	}
+	uint8_t rem;
+	while((size * 10) < n){
+		size++;
+	}
+	for(uint8_t i = 0; i < size; i++){
+		rem = num %10;
+		num = num / 10;
+		uartSend(asciiNumbers[rem]);
+	}
+}
 void printUART(const uint8_t n){
 	uint8_t size = 1;
 	uint8_t num = n;

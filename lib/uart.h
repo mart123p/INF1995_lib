@@ -16,6 +16,13 @@ void initUART();
 void printUART(const char* c, const uint8_t size);
 
 /**
+ * Prints a int to UART
+ * @param n The int to print
+ * @return void
+ */
+void printUART(const int n);
+
+/**
  * Prints a uint8_t to UART
  * @param n The byte to print
  * @return void
