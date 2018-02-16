@@ -1,6 +1,6 @@
 #ifndef UART_H
 #define UART_H
-
+#include <avr/io.h>
 /**
  * Sets all the registers necessary for the UART.
  * @return void
