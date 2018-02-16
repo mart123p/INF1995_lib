@@ -8,18 +8,33 @@ void uartSend(uint8_t data){
         UDR0 = data;
 }
 
+long pow(uint8_t base, uint8_t exponent){
+	long number = base;
+	for(uint8_t i = 1; i < exponent; i++)
+		number *= base;
+	return number;
+}
+
+uint32_t pow_unsigned(uint8_t base, uint8_t exponent){
+	uint32_t number = base;
+	for(uint8_t i = 1; i < exponent; i++)
+		number *= base;
+	return number;
+}
+
+
 void initUART(){
 	// 2400 bauds. Nous vous donnons la valeur des deux
-        // premier registres pour vous éviter des complications
+	// premier registres pour vous éviter des complications
 
-        UBRR0H = 0;
-        UBRR0L = 0xCF;
+	UBRR0H = 0;
+	UBRR0L = 0xCF;
 
-        // permettre la reception et la transmission par le UART0
-        UCSR0A=0;
-        UCSR0B =(1<<RXEN0)|(1<<TXEN0); 
-        // Format des trames: 8 bits, 1 stop bits, none parity
-        UCSR0C =(0 << USBS0)|(3 << UCSZ00)|(0 << UPM00)|(0 << UMSEL00);
+	// permettre la reception et la transmission par le UART0
+	UCSR0A=0;
+	UCSR0B =(1<<RXEN0)|(1<<TXEN0); 
+	// Format des trames: 8 bits, 1 stop bits, none parity
+	UCSR0C =(0 << USBS0)|(3 << UCSZ00)|(0 << UPM00)|(0 << UMSEL00);
 }
 
 void printUART(const char* c, const uint8_t size){
@@ -39,55 +54,69 @@ void printUART(const int n){
 		uartSend('-');
 	}
 	uint8_t rem;
-	while((size * 10) < n){
+	while(pow(10,size) < num){
 		size++;
 	}
+	uint8_t digits[size];
 	for(uint8_t i = 0; i < size; i++){
-		rem = num %10;
+		rem = num % 10;
 		num = num / 10;
-		uartSend(rem);
-		uartSend(pgm_read_byte(&asciiNumbers[rem]));
+		digits[i] = pgm_read_byte(&asciiNumbers[rem]);
+	}
+	for(int i = (size -1); i >= 0; i--){
+		uartSend(digits[i]);
 	}
 }
+
 void printUART(const uint8_t n){
+	printUART((int) n);
+}
+
+void printUART(const long n){
 	uint8_t size = 1;
-	unsigned int num = n;
+	long num = n;
+	if(n < 0){
+		num *= -1;
+		uartSend('-');
+	}
 	uint8_t rem;
-	while((size * 10) < n){
+	while(pow(10,size) < num){
 		size++;
 	}
+	uint8_t digits[size];
 	for(uint8_t i = 0; i < size; i++){
-		rem = num %10;
+		rem = num % 10;
 		num = num / 10;
-		uartSend(asciiNumbers[rem]);
+		digits[i] = pgm_read_byte(&asciiNumbers[rem]);
+	}
+	for(int i = (size -1); i >= 0; i--){
+		uartSend(digits[i]);
 	}
 }
 
 void printUART(const uint16_t n){
-	uint8_t size = 1;
-	unsigned int num = n;
-	uint8_t rem;
-	while((size * 10) < n){
-		size++;
-	}
-	for(uint8_t i = 0; i < size; i++){
-		rem = num %10;
-		num = num / 10;
-		uartSend(asciiNumbers[rem]);
-	}
+	printUART((long) n);
 }
 void printUART(const uint32_t n){
 	uint8_t size = 1;
-        unsigned long num = n;
-        uint8_t rem;
-        while((size * 10) < n){
-                size++;
-        }
-        for(uint8_t i = 0; i < size; i++){
-                rem = num %10;
-                num = num / 10;
-                uartSend(asciiNumbers[rem]);
-        }
+	uint32_t num = n;
+	if(n < 0){
+		num *= -1;
+		uartSend('-');
+	}
+	uint8_t rem;
+	while(pow_unsigned(10,size) < num){
+		size++;
+	}
+	uint8_t digits[size];
+	for(uint8_t i = 0; i < size; i++){
+		rem = num % 10;
+		num = num / 10;
+		digits[i] = pgm_read_byte(&asciiNumbers[rem]);
+	}
+	for(int i = (size -1); i >= 0; i--){
+		uartSend(digits[i]);
+	}
 }
 void printlnUART(){
 	uartSend('\n');
@@ -96,11 +125,34 @@ void testUART(){
 
 	initUART();
 	
+	printUART("Testing UART\n",13);
+	
 	//We check the number ouput
+	printUART(0);
+	printlnUART();
+	
+	printUART(-2);
+	printlnUART();
+	
+	printUART(3);
+	printlnUART();
+	
+	printUART(23);
+	printlnUART();
+	
 	printUART(-23);
 	printlnUART();
 	
-	printUART(3242);
+	printUART(-4232);
+	printlnUART();
+	
+	printUART(4232);
+	printlnUART();
+	
+	printUART(625532);
+	printlnUART();
+	
+	printUART(-625532);
 	printlnUART();
 	
 	uint8_t x1 = 54;
@@ -116,8 +168,9 @@ void testUART(){
 	printlnUART();
 
 	//Testing string output
-	printUART("this is a test",13);
+	printUART("this is a test",14);
 	printlnUART();
-	printUART("Done",4);
+	printUART("Done testing UART!",18);
+	printlnUART();
 }
 

@@ -27,12 +27,15 @@ void setPwmB(uint8_t signal, bool wheelDirection){
 
 void testPwm(){
 	pwmINIT();
+	
 	setPwmA(0,1);
 	setPwmB(0,1);
 	_delay_ms(2000);
+	
 	setPwmA(128,1);
 	setPwmB(128,1);
 	_delay_ms(2000);
+	
 	setPwmA(255,0);
 	setPwmB(255,0);
 	_delay_ms(2000);

@@ -1,5 +1,6 @@
 #ifndef UART_H
 #define UART_H
+
 #include <avr/io.h>
 /**
  * Sets all the registers necessary for the UART.
@@ -21,6 +22,13 @@ void printUART(const char* c, const uint8_t size);
  * @return void
  */
 void printUART(const int n);
+
+/**
+ * Prints a long to UART
+ * @param n The long to print
+ * @return void
+ */
+void printUART(const long n);
 
 /**
  * Prints a uint8_t to UART
