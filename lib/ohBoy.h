@@ -9,5 +9,6 @@
 #include "uart.h"
 #include "memory.h"
 #include "can.h"
+#include "light.h"
 
 #endif

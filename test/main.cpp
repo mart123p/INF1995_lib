@@ -9,7 +9,7 @@
 int main()
 {
 		uart::test();
-		
+		light::test();
 		uart::print("\nTesting PWM\n...",16);
 		pwm::test();
 		uart::print("\nDone testing PWM\n",18);
