@@ -1,5 +1,6 @@
 #include "uart.h"
 #include <avr/pgmspace.h>
+
 const uint8_t asciiNumbers[] PROGMEM = {0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39};
 
 
@@ -23,7 +24,7 @@ uint32_t pow_unsigned(uint8_t base, uint8_t exponent){
 }
 
 
-void initUART(){
+void uart::init(){
 	// 2400 bauds. Nous vous donnons la valeur des deux
 	// premier registres pour vous éviter des complications
 
@@ -37,16 +38,24 @@ void initUART(){
 	UCSR0C =(0 << USBS0)|(3 << UCSZ00)|(0 << UPM00)|(0 << UMSEL00);
 }
 
-void printUART(const char* c, const uint8_t size){
+void uart::print(const char* c, const uint8_t size){
 	for(uint8_t i = 0; i < size; i++){
 		uartSend(c[i]);
 	}
 }
 
-void printUART(const char c){
+void uart::print(const char* c){
+	uint8_t i = 0;
+	while(c[i] != '\0'){
+		uartSend(c[i]);
+		i++;
+	}
+}
+
+void uart::print(const char c){
 	uartSend(c);
 }
-void printUART(const int n){
+void uart::print(const int n){
 	uint8_t size = 1;
 	int num = n;
 	if(n < 0){
@@ -68,11 +77,11 @@ void printUART(const int n){
 	}
 }
 
-void printUART(const uint8_t n){
-	printUART((int) n);
+void uart::print(const uint8_t n){
+	print((int) n);
 }
 
-void printUART(const long n){
+void uart::print(const long n){
 	uint8_t size = 1;
 	long num = n;
 	if(n < 0){
@@ -94,10 +103,10 @@ void printUART(const long n){
 	}
 }
 
-void printUART(const uint16_t n){
-	printUART((long) n);
+void uart::print(const uint16_t n){
+	print((long) n);
 }
-void printUART(const uint32_t n){
+void uart::print(const uint32_t n){
 	uint8_t size = 1;
 	uint32_t num = n;
 	if(n < 0){
@@ -118,59 +127,61 @@ void printUART(const uint32_t n){
 		uartSend(digits[i]);
 	}
 }
-void printlnUART(){
+void uart::println(){
 	uartSend('\n');
 }
-void testUART(){
+void uart::test(){
 
-	initUART();
+	uart::init();
 	
-	printUART("Testing UART\n",13);
+	uart::print("Testing UART\n",13);
 	
 	//We check the number ouput
-	printUART(0);
-	printlnUART();
+	uart::print(0);
+	uart::println();
 	
-	printUART(-2);
-	printlnUART();
+	uart::print(-2);
+	uart::println();
 	
-	printUART(3);
-	printlnUART();
+	uart::print(3);
+	uart::println();
 	
-	printUART(23);
-	printlnUART();
+	uart::print(23);
+	uart::println();
 	
-	printUART(-23);
-	printlnUART();
+	uart::print(-23);
+	uart::println();
 	
-	printUART(-4232);
-	printlnUART();
+	uart::print(-4232);
+	uart::println();
 	
-	printUART(4232);
-	printlnUART();
+	uart::print(4232);
+	uart::println();
 	
-	printUART(625532);
-	printlnUART();
+	uart::print(625532);
+	uart::println();
 	
-	printUART(-625532);
-	printlnUART();
+	uart::print(-625532);
+	uart::println();
 	
 	uint8_t x1 = 54;
-	printUART(x1);
-	printlnUART();
+	uart::print(x1);
+	uart::println();
 
 	uint16_t x2 = 5432;
-	printUART(x2);
-	printlnUART();
+	uart::print(x2);
+	uart::println();
 
 	uint32_t x3 = 4677322;
-	printUART(x3);
-	printlnUART();
+	uart::print(x3);
+	uart::println();
 
 	//Testing string output
-	printUART("this is a test",14);
-	printlnUART();
-	printUART("Done testing UART!",18);
-	printlnUART();
+	uart::print("this is a test",14);
+	uart::println();
+	uart::print("this is a test without a size at the end");
+	uart::println();
+	uart::print("Done testing UART!",18);
+	uart::println();
 }
 

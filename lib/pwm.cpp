@@ -1,6 +1,6 @@
 #include "pwm.h"
 
-void pwmINIT(){
+void pwm::init(){
 	TCCR1A |= (1 << COM1A1) | (1 << COM1B1);
 	// SET NON-INVERTING MODE
 	TCCR1A |= (1 << WGM10);
@@ -9,7 +9,7 @@ void pwmINIT(){
 	DDRD =0xff;
 }
 
-void setPwmA(uint8_t signal, bool wheelDirection){
+void pwm::setA(uint8_t signal, bool wheelDirection){
 	OCR1A = signal;
 	if(wheelDirection)
 		PORTD |= 0x80;//set PIND8 to 1
@@ -17,7 +17,7 @@ void setPwmA(uint8_t signal, bool wheelDirection){
 		PORTD &= 0x7F;//set PIND8 to 0
 }
 
-void setPwmB(uint8_t signal, bool wheelDirection){
+void pwm::setB(uint8_t signal, bool wheelDirection){
 	OCR1B = signal;
 	if(wheelDirection)
 		PORTD |= 0x40;//set PIND7 to 1
@@ -25,18 +25,25 @@ void setPwmB(uint8_t signal, bool wheelDirection){
 		PORTD &= 0xBf;//set PIND7 to 0
 }
 
-void testPwm(){
-	pwmINIT();
+void pwm::test(){
+	pwm::init();
 	
-	setPwmA(0,1);
-	setPwmB(0,1);
-	_delay_ms(2000);
+	pwm::setA(0,1);
+	pwm::setB(0,1);
+	_delay_ms(1);
 	
-	setPwmA(128,1);
-	setPwmB(128,1);
-	_delay_ms(2000);
+	pwm::setA(170,1);
+	pwm::setB(170,1);
+	_delay_ms(4000);
 	
-	setPwmA(255,0);
-	setPwmB(255,0);
-	_delay_ms(2000);
+	pwm::setA(170,0);
+	pwm::setB(170,0);
+	_delay_ms(4000);
+	
+	pwm::setA(255,0);
+	pwm::setB(255,0);
+	_delay_ms(8000);
+	
+	pwm::setA(0,1);
+	pwm::setB(0,1);
 }
