@@ -13,7 +13,7 @@
 #include "can.h"
 
 // constructeur: initialisation du convertisseur
-can::can()
+can::can::can()
 {
    // ADC mux : reference analogique externe
    //           ajuste a droite
@@ -31,7 +31,7 @@ can::can()
 }
 
 // Destructeur:  Arreter le convertisseur pour sauver sur la consommation.
-can::~can()
+can::can::~can()
 {
    // rendre le convertisseur inactif.
    ADCSRA = 0 << ADEN ;
@@ -40,7 +40,7 @@ can::~can()
 // Faire une conversion et aller retourner le resultat sur 16 bits
 // dont seulement les 10 de poids faibles sont significatifs.
 uint16_t
-can::lecture( uint8_t pos)
+can::can::lecture( uint8_t pos)
 {
    uint16_t adcVal;
 
