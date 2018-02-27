@@ -9,21 +9,31 @@
 int main()
 {
 		uart::test();
-		light::test();
-		uart::print("\nTesting PWM\n...",16);
-		pwm::test();
-		uart::print("\nDone testing PWM\n",18);
 		
+		uart::print("\nTesting light\n...");
+		light::test();
+		uart::print("\nDone testing light\n");
+		
+		//Memory test
+		uart::print("\nTesting Memory\n...\n");
+		mem::test();
+		uart::print("\n\nDone testing Memory\n");
+			
 		//Testing timer with LED
 		
 		//Testing can
 		
 		//Waiting for interrupt test
 		
-		//LED Color
+		//Testing sound
 		
-		//Memory test
-		
+		uart::print("\nTesting PWM\n...");
+		pwm::test();
+		uart::print("\nDone testing PWM\n");
+	
 				
+	
+		
+		uart::print("\n\nTests were completed!");	
 		while(true);
 }

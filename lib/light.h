@@ -10,7 +10,8 @@ namespace light{
 	void init();
 	void green();
 	void red();
-	void amber();
+	void amber(uint16_t ms);
+	void off();
 	void test();
 }
 #endif

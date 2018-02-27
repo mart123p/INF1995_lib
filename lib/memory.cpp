@@ -32,8 +32,9 @@
 #endif
 
 #include "memory.h"
+#include "uart.h"
 
-uint8_t Memoire24CXXX::m_adresse_peripherique = 0xA0;
+uint8_t mem::Memoire24CXXX::m_adresse_peripherique = 0xA0;
 
 /******************************************************************************/
 /* void Memoire24CXXX::Memoire24CXXX()                                        */
@@ -44,7 +45,7 @@ uint8_t Memoire24CXXX::m_adresse_peripherique = 0xA0;
 /* Parametre d'entree  : aucun                                                */
 /* Parametre de sortie : aucun                                                */
 /******************************************************************************/
-Memoire24CXXX::Memoire24CXXX()
+mem::Memoire24CXXX::Memoire24CXXX()
   : PAGE_SIZE(128)
 {
    init();
@@ -59,7 +60,7 @@ Memoire24CXXX::Memoire24CXXX()
 /* Parametre d'entree  : aucun                                                */
 /* Parametre de sortie : aucun                                                */
 /******************************************************************************/
-Memoire24CXXX::~Memoire24CXXX()
+mem::Memoire24CXXX::~Memoire24CXXX()
 {
    // rien a faire... 
 }
@@ -73,7 +74,7 @@ Memoire24CXXX::~Memoire24CXXX()
 /* Parametre d'entree  : aucun                                                */
 /* Parametre de sortie : aucun                                                */
 /******************************************************************************/
-void Memoire24CXXX::init()
+void mem::Memoire24CXXX::init()
 {
    choisir_banc(0);
    // Initialisation de l'horloge de l'interface I2C
@@ -91,14 +92,14 @@ void Memoire24CXXX::init()
 /* Parametre d'entree  : uint8_t banc - le banc de memoire a choisir          */
 /* Parametre de sortie : uint8_t      - rv si c'est un succes, 255 si echec   */
 /******************************************************************************/
-uint8_t Memoire24CXXX::choisir_banc(const uint8_t banc)
+uint8_t mem::Memoire24CXXX::choisir_banc(const uint8_t banc)
 {
    uint8_t temp = banc & 0x03;
    uint8_t rv = 255;
    if(banc == temp)
    {
-      Memoire24CXXX::m_adresse_peripherique = (0xA0 | ( banc << 1 ));
-      rv = Memoire24CXXX::m_adresse_peripherique;
+      mem::Memoire24CXXX::m_adresse_peripherique = (0xA0 | ( banc << 1 ));
+      rv = mem::Memoire24CXXX::m_adresse_peripherique;
    }
    return rv;
 }
@@ -145,7 +146,7 @@ uint8_t Memoire24CXXX::choisir_banc(const uint8_t banc)
 /* Parametres de sortie : uint8_t *donnee  - donnees lues                     */
 /*                                                                            */
 /******************************************************************************/
-uint8_t Memoire24CXXX::lecture(const uint16_t adresse, uint8_t *donnee)
+uint8_t mem::Memoire24CXXX::lecture(const uint16_t adresse, uint8_t *donnee)
 {
   uint8_t rv = 0;
 
@@ -213,7 +214,7 @@ uint8_t Memoire24CXXX::lecture(const uint16_t adresse, uint8_t *donnee)
 }
 
 
-uint8_t Memoire24CXXX::lecture(const uint16_t adresse, uint8_t *donnee,
+uint8_t mem::Memoire24CXXX::lecture(const uint16_t adresse, uint8_t *donnee,
                                uint8_t longueur)
 {
   uint8_t twcr;
@@ -332,7 +333,7 @@ uint8_t Memoire24CXXX::lecture(const uint16_t adresse, uint8_t *donnee,
 /* Parametre de sortie  : uint8_t rv       - nombre de donnees ecrites        */
 /*                                                                            */
 /******************************************************************************/
-uint8_t Memoire24CXXX::ecriture(const uint16_t adresse, const uint8_t donnee)
+uint8_t mem::Memoire24CXXX::ecriture(const uint16_t adresse, const uint8_t donnee)
 {
   //______________ Attente de la fin d'un cycle d'ecriture ______________
   for ( ; ; )
@@ -386,7 +387,7 @@ uint8_t Memoire24CXXX::ecriture(const uint16_t adresse, const uint8_t donnee)
 }
 
 
-uint8_t Memoire24CXXX::ecriture(const uint16_t adresse, uint8_t *donnee,
+uint8_t mem::Memoire24CXXX::ecriture(const uint16_t adresse, uint8_t *donnee,
                                 const uint8_t longueur)
 {
   uint8_t rv;
@@ -405,7 +406,7 @@ uint8_t Memoire24CXXX::ecriture(const uint16_t adresse, uint8_t *donnee,
 }
 
 
-uint8_t Memoire24CXXX::ecrire_page(const uint16_t adresse, uint8_t *donnee,
+uint8_t mem::Memoire24CXXX::ecrire_page(const uint16_t adresse, uint8_t *donnee,
                                    const uint8_t longueur)
 {
   uint16_t addr_fin;
@@ -474,4 +475,22 @@ uint8_t Memoire24CXXX::ecrire_page(const uint16_t adresse, uint8_t *donnee,
   TWCR = _BV(TWINT) | _BV(TWSTO) | _BV(TWEN); // Demarrage du cycle d'ecriture
 
   return rv;
+}
+
+void mem::test(){
+	mem::Memoire24CXXX memory;
+	memory.init();
+	uint8_t gorilla[165] = {0x20 ,0x20 ,0x20 ,0x20 ,0x20 ,0x20 ,0x2e ,0x22 ,0x60 ,0x22 ,0x2e ,0x0a ,0x20 ,0x20 ,0x2e ,0x2d ,0x2e ,0x2f ,0x20 ,0x5f ,0x3d ,0x5f ,0x20 ,0x5c ,0x2e ,0x2d ,0x2e ,0x0a ,0x20 ,0x7b ,0x20 ,0x20 ,0x28 ,0x2c ,0x28 ,0x6f ,0x59 ,0x6f ,0x29 ,0x2c ,0x29 ,0x20 ,0x7d ,0x7d ,0x0a ,0x20 ,0x7b ,0x7b ,0x20 ,0x7c ,0x20 ,0x20 ,0x20 ,0x22 ,0x20 ,0x20 ,0x20 ,0x7c ,0x7d ,0x20 ,0x7d ,0x0a ,0x20 ,0x7b ,0x20 ,0x7b ,0x20 ,0x5c ,0x28 ,0x2d ,0x2d ,0x2d ,0x29 ,0x2f ,0x20 ,0x20 ,0x7d ,0x7d ,0x0a ,0x20 ,0x7b ,0x7b ,0x20 ,0x20 ,0x7d ,0x27 ,0x2d ,0x3d ,0x2d ,0x27 ,0x7b ,0x20 ,0x7d ,0x20 ,0x7d ,0x0a ,0x20 ,0x7b ,0x20 ,0x7b ,0x20 ,0x7d ,0x2e ,0x5f ,0x3a ,0x5f ,0x2e ,0x7b ,0x20 ,0x20 ,0x7d ,0x7d ,0x0a ,0x20 ,0x7b ,0x7b ,0x20 ,0x20 ,0x7d ,0x20 ,0x2d ,0x3a ,0x2d ,0x20 ,0x7b ,0x20 ,0x7d ,0x20 ,0x7d ,0x0a ,0x20 ,0x7b ,0x5f ,0x7b ,0x20 ,0x7d ,0x60 ,0x3d ,0x3d ,0x3d ,0x60 ,0x7b ,0x20 ,0x20 ,0x5f ,0x7d ,0x0a ,0x28 ,0x28 ,0x28 ,0x28 ,0x5c ,0x29 ,0x20 ,0x20 ,0x20 ,0x20 ,0x20 ,0x28 ,0x2f ,0x29 ,0x29 ,0x29 ,0x29};
+	memory.ecriture(0x00,gorilla,165);
+	
+	//0x00 - 0xA5
+	
+	uart::print("Writing done reading from memory.\n");
+	
+	uint8_t buffer[165];
+	memory.lecture(0x00,buffer,165);
+	
+	for(uint8_t i = 0; i < 165; i++){
+		uart::print((char) buffer[i]);
+	}
 }
