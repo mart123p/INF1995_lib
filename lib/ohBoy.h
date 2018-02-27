@@ -1,3 +1,11 @@
+/**
+ * Ecole Polytechnique de Montreal
+ * Departement de genie informatique
+ * Cours inf1995
+ *
+ * Martin Pouliot, Cédric Tessier, Pascal Morel, Sean Costello
+ * 2018
+ */
 #ifndef OHBOY_H
 #define OHGBOY_H
 
