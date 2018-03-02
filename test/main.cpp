@@ -21,7 +21,7 @@ int main()
 			
 		//Testing timesr with LED
 		uart::print("\n\nTesting the timer\n");
-		timer::test();
+		//timer::test();
 		uart::print("\n\nDone testing the timer\n");
 		
 		//Testing can
