@@ -63,7 +63,7 @@ void uart::print(const int n){
 		uartSend('-');
 	}
 	uint8_t rem;
-	while(pow(10,size) < num){
+	while(pow(10,size) <= num){
 		size++;
 	}
 	uint8_t digits[size];
