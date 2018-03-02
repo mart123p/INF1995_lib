@@ -1,10 +1,4 @@
-CC=avr-gcc
-MCU=atmega324pa
-OPTLEVEL=s
-CFLAGS=-I. -MMD -g -mmcu=$(MCU) -O$(OPTLEVEL) \
-        -fpack-struct -fshort-enums             \
-        -funsigned-bitfields -funsigned-char    \
-        -Wall
+#include "../Makefile.common"
 all: uart.o pwm.o memory.o can.o light.o
 	avr-ar crs -o libohboy.a $^
 pwm.o: pwm.h pwm.cpp

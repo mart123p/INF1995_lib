@@ -1,3 +1,4 @@
+#include "../Makefile.common"
 ########       AVR Project Makefile       ########
 #####                                        #####
 #####      Makefile produit et ecrit par     #####
@@ -17,10 +18,6 @@
 #####      Details specifique a la cible       #####
 #####  Vous devez les adapter a votre projet   #####
 
-# Nom du microcontroleur cible
-# (exemple: 'at90s8515')
-MCU=atmega324pa
-
 # Nom de votre projet
 # (utilisez un seul mot, exemple: 'monprojet')
 PROJECTNAME=projet
@@ -37,9 +34,6 @@ INC=-I../lib/
 # Libraires a lier (ex: -lmylib)
 LIBS=-lohboy
 
-# Niveau d'optimization
-# Utilisez s (size opt), 1, 2, 3 ou 0 (off)
-OPTLEVEL=s
 
 # Programmer ID - Ne pas changer 
 # Liste complete des IDs disponible avec avrdude
@@ -59,9 +53,6 @@ AVRDUDE_PROGRAMMERID=usbasp
 
 
 ####### variables #######
-
-#compilateur utilise
-CC=avr-gcc
 #pour copier le contenu d'un fichier objet vers un autre
 OBJCOPY=avr-objcopy
 #pour permettre le transfert vers le microcontroleur
@@ -74,12 +65,6 @@ HEXFORMAT=ihex
 
 
 ####### Options de compilation #######
-
-# Flags pour le compilateur en C
-CFLAGS=-I. -MMD $(INC) -g -mmcu=$(MCU) -O$(OPTLEVEL) \
-	-fpack-struct -fshort-enums             \
-	-funsigned-bitfields -funsigned-char    \
-	-Wall                                        
 
 # Flags pour le compilateur en C++
 CXXFLAGS=-fno-exceptions     
