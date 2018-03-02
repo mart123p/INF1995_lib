@@ -8,8 +8,8 @@
 #include "ohBoy.h"
 int main()
 {
-		uart::test();
 		
+		uart::test();
 		uart::print("\nTesting light\n...");
 		light::test();
 		uart::print("\nDone testing light\n");
@@ -34,9 +34,5 @@ int main()
 		pwm::test();
 		uart::print("\nDone testing PWM\n");
 	
-				
-	
-		
-		uart::print("\n\nTests were completed!");	
 		while(true);
 }

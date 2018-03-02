@@ -1,7 +1,17 @@
-namespace sound{
+#ifndef SOUND_H
+#define SOUND_H
 
-void soundSuccess()
-void soundFail()
-void beep(uint8_t length)
+#include <avr/io.h>
+#define F_CPU 8000000
+#include <util/delay.h>
+
+namespace sound{
+	void init();
+	void success();
+	void fail();
+	void beep(uint8_t length);
+	void test();
 
 }
+
+#endif

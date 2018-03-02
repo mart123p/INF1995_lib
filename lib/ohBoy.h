@@ -18,5 +18,6 @@
 #include "memory.h"
 #include "can.h"
 #include "light.h"
+#include "sound.h"
 
 #endif
