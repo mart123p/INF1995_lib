@@ -6,10 +6,24 @@
  *
  */
 #include "ohBoy.h"
+
+
+volatile uint16_t cmp = 0;
+ISR(TIMER1_COMPA_vect){
+	cmp++;
+}
+
 int main()
 {
+	
 		
+		//Testing uart
 		uart::test();
+		
+		
+		
+		
+		//Testing light
 		uart::print("\nTesting light\n...");
 		light::test();
 		uart::print("\nDone testing light\n");
@@ -19,20 +33,24 @@ int main()
 		mem::test();
 		uart::print("\n\nDone testing Memory\n");
 			
-		//Testing timesr with LED
-		uart::print("\n\nTesting the timer\n");
-		//timer::test();
-		uart::print("\n\nDone testing the timer\n");
-		
 		//Testing can
-		
-		//Waiting for interrupt test
 		
 		//Testing sound
 		
+		//Testing pwm
 		uart::print("\nTesting PWM\n...");
-		pwm::test();
+		//pwm::test();
 		uart::print("\nDone testing PWM\n");
-	
-		while(true);
+		
+		//Testing timer with LED
+		uart::print("\n\nTesting the timer\n...");
+		timer::test(100);
+		uart::print("\n\nDone testing the timer\n");
+		
+		
+		while(1){
+			uart::print(cmp); 
+			uart::print(" "); 
+			_delay_ms(100);
+		}
 }

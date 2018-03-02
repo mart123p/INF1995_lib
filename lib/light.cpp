@@ -36,9 +36,9 @@ void light::test()
 {
 	light::init();
 	light::green();
-	_delay_ms(5000);
+	_delay_ms(500);
 	light::red();
-	_delay_ms(5000);
-	light::amber(5000);
+	_delay_ms(500);
+	light::amber(500);
 	light::off();
 }

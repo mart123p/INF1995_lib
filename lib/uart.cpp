@@ -143,7 +143,7 @@ void uart::test(){
 	uart::print(-2);
 	uart::println();
 	
-	uart::print(3);
+	uart::print(10);
 	uart::println();
 	
 	uart::print(23);

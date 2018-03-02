@@ -1,45 +1,65 @@
 #include "timer.h"
 #include "light.h"
 
-timer::init(uint16_t ms){
-	
-	//set prescaler to 64 in CTC mode
-	TCCR1B |= (1 << WGM12)|(1 << CS12);
-	
-	// initialiser le compteur
-    TCNT1 = 0;
-	
-	OCR1A = ms*31;
-	
-  	// activate the timer
-    TIMSK1 |= (1 << OCIE1A);
 
- 	// activate the interrupts
+
+void timer::init(){
+	
+	
+	 // set up timer with prescaler = 64 and CTC mode
+    TCCR1B |= (1 << WGM12)|(1 << CS12);
+  
+    // initialize counter
+    TCNT1 = 0;
+  
+    // initialize compare value
+    OCR1A = 31249;
+  
+    // enable compare interrupt
+    TIMSK1 |= (1 << OCIE1A);
+  
+    // enable global interrupts
     sei();
+	
+}
+
+void timer::init(uint16_t ms){
+	
+	 // set up timer with prescaler = 64 and CTC mode
+    TCCR1B |= (1 << WGM12)|(1 << CS12);
+  
+    // initialize counter
+    TCNT1 = 0;
+  
+    // initialize compare value
+    OCR1A = (ms*31.249);
+  
+    // enable compare interrupt
+    TIMSK1 |= (1 << OCIE1A);
+  
+    // enable global interrupts
+    sei();
+
 
 }
 
-
-
-timer::on(){
+void timer::on(){
 	
 	sei();	
 	
 }
-timer::off(){
+void timer::off(){
 	
 	cli();	
 	
 }
 
-timer::test(){
+void timer::test(){
 	
-	ISR (TIMER1_COMPA_vect){
-	light::green();
-	_delay_(5000);
-	light::red();
-	TCNT1 = 0;
+	timer::init();
 }
-	timer::init(5000);
+
+void timer::test(uint16_t ms){
 	
+	timer::init(ms);
 }
