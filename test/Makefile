@@ -1,4 +1,4 @@
-#include "../Makefile.common"
+include ../Makefile.common
 ########       AVR Project Makefile       ########
 #####                                        #####
 #####      Makefile produit et ecrit par     #####
@@ -30,7 +30,7 @@ PRJSRC= main.cpp
 
 # Inclusions additionnels (ex: -I/path/to/mydir)
 INC=-I../lib/
-
+CFLAGS+=$(INC)
 # Libraires a lier (ex: -lmylib)
 LIBS=-lohboy
 

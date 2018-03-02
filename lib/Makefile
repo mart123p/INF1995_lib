@@ -1,5 +1,7 @@
-#include "../Makefile.common"
-all: uart.o pwm.o memory.o can.o light.o
+include ../Makefile.common
+all: libohboy.a
+	
+libohboy.a:  uart.o pwm.o memory.o can.o light.o sound.o
 	avr-ar crs -o libohboy.a $^
 pwm.o: pwm.h pwm.cpp
 	$(CC) $(CFLAGS) -l. -c pwm.cpp -o $@
@@ -11,6 +13,8 @@ can.o: can.h can.cpp
 	$(CC) $(CFLAGS) -l. -c can.cpp -o $@
 light.o:light.h light.cpp
 	$(CC) $(CFLAGS) -l. -c light.cpp -o $@
+sound.o:sound.h sound.cpp
+	$(CC) $(CFLAGS) -l. -c sound.cpp -o $@
 clean:
 	rm *.o
 	rm *.d
