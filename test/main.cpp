@@ -19,7 +19,10 @@ int main()
 		mem::test();
 		uart::print("\n\nDone testing Memory\n");
 			
-		//Testing timer with LED
+		//Testing timesr with LED
+		uart::print("\n\nTesting the timer\n");
+		timer::test();
+		uart::print("\n\nDone testing the timer\n");
 		
 		//Testing can
 		

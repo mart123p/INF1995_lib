@@ -70,3 +70,5 @@ can::can::lecture( uint8_t pos)
    return adcVal;
 }
 
+
+

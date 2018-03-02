@@ -1,10 +1,5 @@
 /**
- * Ecole Polytechnique de Montreal
- * Departement de genie informatique
- * Cours inf1995
- *
- * Martin Pouliot, Cédric Tessier, Pascal Morel, Sean Costello
- * 2018
+ * Red cable on pin 4 and +
  */
 
 #ifndef LIGHT_H
@@ -18,32 +13,38 @@ namespace light{
 	
 	/**
 	 * Set PortD pin in output mode 
+	 * @return void
 	 */
 	void init();
 	 
 	/**
 	 * Set the LED to green
+	 * @return void
 	 */
 	void green();
 	
 	/**
 	 * Set the LED to red
+	 * @return void
 	 */
 	void red();
 	
 	/**
 	 * Set the LED to amber
+	 * @return void
 	 */
 	void amber(uint16_t ms);
 	
 	/**
 	 * Turn off the LED
 	 * @param time in ms the LED is amber
+	 * @return void
 	 */
 	void off();
 	
 	/**
 	 * Test the LED
+	 * @return void
 	 */
 	void test();
 }
