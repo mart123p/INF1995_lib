@@ -32,14 +32,8 @@ timer::off(){
 	
 }
 
-timer::test(){
+
+void timer::test(uint16_t ms){
 	
-	ISR (TIMER1_COMPA_vect){
-	light::green();
-	_delay_(5000);
-	light::red();
-	TCNT1 = 0;
-}
-	timer::init(5000);
-	
+	timer::init(ms);
 }
