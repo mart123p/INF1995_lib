@@ -27,7 +27,7 @@ void frequency(const uint16_t freq, const uint16_t duration){
 }
 
 void sound::init(){
-	DDRC |= 0x0C;
+	DDRC |= 0x04;
 	PORTC  &= ~(1 << PD3);
 }
 
