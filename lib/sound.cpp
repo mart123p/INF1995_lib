@@ -89,7 +89,33 @@ void sound::crazyfrog(){
 }
 
 void sound::fail(){
-	
+	frequency(C5,153);
+	_delay_ms(247);
+	frequency(G4,153);
+	_delay_ms(247);
+	frequency(E4,232);
+	_delay_ms(68);
+	frequency(A4,174);
+	_delay_ms(57);
+	frequency(B4,180);
+	_delay_ms(51);
+	frequency(A4,178);
+	_delay_ms(53);
+	frequency(G4_,232);
+	_delay_ms(69);
+	frequency(A4_,232);
+	_delay_ms(69);
+	frequency(G4_,232);
+	_delay_ms(69);
+	frequency(G4,116);
+	_delay_ms(31);
+	frequency(F4,115);
+	_delay_ms(37);
+	frequency(G4,1400);
+}
+
+void sound::beep(const uint16_t duration){
+	frequency(G4,duration);
 }
 
 void sound::test(){

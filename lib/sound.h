@@ -50,7 +50,7 @@ namespace sound{
 	void success();
 	void fail();
 	void crazyfrog();
-	void beep(uint8_t length);
+	void beep(const uint16_t duration);
 	void test();
 
 }
