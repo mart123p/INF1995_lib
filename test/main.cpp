@@ -23,16 +23,14 @@ int main()
 		uart::print("\n\nTesting the timer\n");
 		//timer::test();
 		uart::print("\n\nDone testing the timer\n");
-		
-		//Testing can
-		
-		//Waiting for interrupt test
-		
-		//Testing sound
-		
+								
 		uart::print("\nTesting PWM\n...");
 		pwm::test();
 		uart::print("\nDone testing PWM\n");
-	
+
+		//Testing sound
+		uart::print("\nTesting sound\n...");
+		sound::test();
+		uart::print("\n\nTests were completed!");	
 		while(true);
 }
