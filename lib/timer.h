@@ -9,12 +9,6 @@
 namespace timer{
 	
 	/**
-	 * Turn on the timer and interrupt
-	 * @return void
-	 */
-	void init();
-	
-	/**
 	 * Initialize the timer 
 	 * @param ms delay between each incrementation
 	 * @return void
@@ -33,12 +27,6 @@ namespace timer{
 	 */
 	void off();
 	
-	/**
-	 * Test the timer functions
-	 * @return void
-	 */
-	void test();
-		
 		
 	/**
 	 * Test all the timer functions
