@@ -26,7 +26,7 @@ namespace timer{
 	 * Test all the timer functions
 	 * @return void
 	 */
-	void test();
+	void test(uint16_t ms);
 		
 	
 }
