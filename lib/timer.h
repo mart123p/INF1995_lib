@@ -21,7 +21,10 @@ namespace timer{
 	 */
 	void init(uint16_t ms);
 	
-	
+	/**
+	 * Turn on the timer and interrupt
+	 * @return void
+	 */
 	void on();
 	
 	/**
