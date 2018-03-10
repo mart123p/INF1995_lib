@@ -129,7 +129,7 @@ void sound::success(){
     _delay_ms(144);
     frequency(C5_, 82);
     _delay_ms(26);
-    frequency(G4_ 82);
+    frequency(G4_, 82);
     _delay_ms(26);
     frequency(F4, 82);
     _delay_ms(26);
@@ -139,7 +139,7 @@ void sound::success(){
     _delay_ms(26);
     frequency(F4, 82);
     _delay_ms(26);
-    frequency(C5_ 503);
+    frequency(C5_, 503);
     _delay_ms(144);
     frequency(D5_, 82);
     _delay_ms(26);
