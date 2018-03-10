@@ -113,23 +113,23 @@ void sound::fail() {
 }
 
 void sound::success(){
-	frequency(C5, 248);
-	_delay_ms(76);
-    frequency(G4, 248);
-    _delay_ms(76);
-    frequency(E4, 248);
-    _delay_ms(76);
-    frequency(C5, 248);
-    _delay_ms(76);
-    frequency(G4, 248);
-    _delay_ms(76);
-    frequency(E4, 248);
-    _delay_ms(76);
+	frequency(C5, 83);
+	_delay_ms(26);
+    frequency(G4, 83);
+    _delay_ms(26);
+    frequency(E4, 83);
+    _delay_ms(26);
+    frequency(C5, 83);
+    _delay_ms(26);
+    frequency(G4, 83);
+    _delay_ms(26);
+    frequency(E4, 83);
+    _delay_ms(26);
 }
 
 void sound::beep(const uint16_t duration) { frequency(G4, duration); }
 
 void sound::test() {
   sound::init();
-  sound::fail();
+  sound::success();
 }
