@@ -113,8 +113,18 @@ void sound::fail() {
 }
 
 void sound::success(){
-	frequency(C5,153);
-	_delay_ms(200);
+	frequency(C5, 248);
+	_delay_ms(76);
+    frequency(G4, 248);
+    _delay_ms(76);
+    frequency(E4, 248);
+    _delay_ms(76);
+    frequency(C5, 248);
+    _delay_ms(76);
+    frequency(G4, 248);
+    _delay_ms(76);
+    frequency(E4, 248);
+    _delay_ms(76);
 }
 
 void sound::beep(const uint16_t duration) { frequency(G4, duration); }
