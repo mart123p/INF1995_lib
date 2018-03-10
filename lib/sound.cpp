@@ -112,11 +112,14 @@ void sound::fail() {
   frequency(G4, 1400);
 }
 
+void sound::success(){
+	frequency(C5,153);
+	_delay_ms(200);
+}
+
 void sound::beep(const uint16_t duration) { frequency(G4, duration); }
 
 void sound::test() {
   sound::init();
   sound::success();
-  sound::fail();
-  sound::crazyfrog();
 }
