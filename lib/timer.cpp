@@ -1,37 +1,24 @@
 #include "timer.h"
 #include "light.h"
 
-void timer::init(uint16_t ms){
-	
-	//set prescaler to 64 in CTC mode
-	TCCR1B |= (1 << WGM12)|(1 << CS12);
-	
-	// initialiser le compteur
-    TCNT1 = 0;
-	
-	OCR1A = ms*31;
-	
-  	// activate the timer
-    TIMSK1 |= (1 << OCIE1A);
+void timer::init(uint16_t ms) {
+  // set prescaler to 64 in CTC mode
+  TCCR1B |= (1 << WGM12) | (1 << CS12);
 
- 	// activate the interrupts
-    sei();
+  // initialiser le compteur
+  TCNT1 = 0;
 
+  OCR1A = ms * 31;
+
+  // activate the timer
+  TIMSK1 |= (1 << OCIE1A);
+
+  // activate the interrupts
+  sei();
 }
 
-void timer::on(){
-	
-	sei();	
-	
-}
+void timer::on() { sei(); }
 
-void timer::off(){
-	
-	cli();	
-	
-}
+void timer::off() { cli(); }
 
-void timer::test(uint16_t ms){
-	
-	timer::init(ms);
-}
+void timer::test(uint16_t ms) { timer::init(ms); }

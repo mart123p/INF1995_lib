@@ -48,46 +48,45 @@
 #define C4_ 1890
 #define C4 2005
 
+namespace sound {
 
-namespace sound{
-	
-	/**
-	 * Initialize the sound pin
-	 * @return void
-	 */
-	void init();
-	
-	/**
-	 * Play a success sound
-	 * @return void
-	 */
-	void success();
+/**
+ * Initialize the sound pin
+ * @return void
+ */
+void init();
 
-	/**
-	 * Play a fail sound
-	 * @return void
-	 */
-	void fail();
+/**
+ * Play a success sound
+ * @return void
+ */
+void success();
 
-	/**
-	 * Play the music crazy frog
-	 * @return void
-	 */
-	void crazyfrog();
+/**
+ * Play a fail sound
+ * @return void
+ */
+void fail();
 
-	/**
-	 * Play a beep sound
-	 * @param duration in ms to play beep sound
-	 * @return void
-	 */
-	void beep(const uint16_t duration);
+/**
+ * Play the music crazy frog
+ * @return void
+ */
+void crazyfrog();
 
-	/**
-	 * Test all the sound functions
-	 * @return void
-	 */
-	void test();
+/**
+ * Play a beep sound
+ * @param duration in ms to play beep sound
+ * @return void
+ */
+void beep(const uint16_t duration);
 
-}
+/**
+ * Test all the sound functions
+ * @return void
+ */
+void test();
+
+}  // namespace sound
 
 #endif
