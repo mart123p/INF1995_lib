@@ -153,6 +153,22 @@ void sound::success(){
     _delay_ms(26);
     frequency(G4, 82);
     _delay_ms(26);
+    frequency(D5_, 125);
+    _delay_ms(37);
+    frequency(D5_, 39);
+    _delay_ms(14);
+    frequency(D5_, 39);
+    _delay_ms(14);
+    frequency(D5_, 39);
+    _delay_ms(14);
+    frequency(F5, 39);
+    _delay_ms(69);
+    frequency(F5, 39);
+    _delay_ms(69);
+    frequency(F5, 39);
+    _delay_ms(69);
+    frequency(G5, 505);
+    
     
     
 }
