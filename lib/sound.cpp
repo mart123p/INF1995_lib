@@ -1,5 +1,4 @@
 #include "sound.h"
-#include "uart.h"
 void _delay_us_var(const uint16_t duration) {
   uint16_t i = 0;
   while (i != duration) {
@@ -16,7 +15,6 @@ void _delay_us_var(const uint16_t duration) {
 void frequency(const uint16_t freq, const uint16_t duration) {
   uint16_t i = 0;
   uint16_t time = (1000 * (uint32_t)duration) / (freq + 60);
-  uart::print(time);
   while (i != time) {
     PORTC |= (1 << PD2);
     _delay_us(60);  // 60 is the volume...
@@ -180,5 +178,4 @@ void sound::test() {
   sound::success();
   _delay_ms(1000);
   sound::crazyfrog();
-
 }

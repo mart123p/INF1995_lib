@@ -1,7 +1,8 @@
 #include "timer.h"
-#include "light.h"
 
 void timer::init(uint16_t ms) {
+  TCCR1A = 0;
+  TCCR1B = 0;
   // set prescaler to 64 in CTC mode
   TCCR1B |= (1 << WGM12) | (1 << CS12);
 
