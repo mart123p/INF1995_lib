@@ -27,7 +27,7 @@ void frequency(const uint16_t freq, const uint16_t duration) {
 }
 
 void sound::init() {
-  DDRC |= 0x04;
+  DDRC |= 0x0C;
   PORTC &= ~(1 << PD3);
 }
 
@@ -121,5 +121,5 @@ void sound::beep(const uint16_t duration) { frequency(G4, duration); }
 
 void sound::test() {
   sound::init();
-  sound::success();
+  sound::fail();
 }
