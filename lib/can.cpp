@@ -11,6 +11,8 @@
  */
 
 #include "can.h"
+#include "uart.h"
+
 
 // constructeur: initialisation du convertisseur
 can::can::can()
@@ -39,8 +41,7 @@ can::can::~can()
 
 // Faire une conversion et aller retourner le resultat sur 16 bits
 // dont seulement les 10 de poids faibles sont significatifs.
-uint16_t
-can::can::lecture( uint8_t pos)
+uint16_t can::can::lecture( uint8_t pos)
 {
    uint16_t adcVal;
 
@@ -70,5 +71,11 @@ can::can::lecture( uint8_t pos)
    return adcVal;
 }
 
+void can::test()
+{
+   can can_obj;
+   uart::print(can_obj.lecture(0));
+   uart::println();
+}
 
 

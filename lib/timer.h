@@ -1,5 +1,9 @@
 #ifndef TIMER_H
 #define TIMER_H
+#include <avr/interrupt.h>
+/**
+ * Various functions to simplify the use of timer1
+ */
 
 namespace timer{
 	

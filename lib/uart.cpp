@@ -25,16 +25,14 @@ uint32_t pow_unsigned(uint8_t base, uint8_t exponent){
 
 
 void uart::init(){
-	// 2400 bauds. Nous vous donnons la valeur des deux
-	// premier registres pour vous éviter des complications
-
+	// 2400 bauds.
 	UBRR0H = 0;
 	UBRR0L = 0xCF;
 
-	// permettre la reception et la transmission par le UART0
+	// allow reception and transmission via UART0
 	UCSR0A=0;
 	UCSR0B =(1<<RXEN0)|(1<<TXEN0); 
-	// Format des trames: 8 bits, 1 stop bits, none parity
+	// 8 bits, 1 stop bits, none parity
 	UCSR0C =(0 << USBS0)|(3 << UCSZ00)|(0 << UPM00)|(0 << UMSEL00);
 }
 
@@ -55,6 +53,7 @@ void uart::print(const char* c){
 void uart::print(const char c){
 	uartSend(c);
 }
+
 void uart::print(const int n){
 	uint8_t size = 1;
 	int num = n;
@@ -106,6 +105,7 @@ void uart::print(const long n){
 void uart::print(const uint16_t n){
 	print((long) n);
 }
+
 void uart::print(const uint32_t n){
 	uint8_t size = 1;
 	uint32_t num = n;
@@ -127,16 +127,18 @@ void uart::print(const uint32_t n){
 		uartSend(digits[i]);
 	}
 }
+
 void uart::println(){
 	uartSend('\n');
 }
+
 void uart::test(){
 
 	uart::init();
 	
 	uart::print("Testing UART\n",13);
 	
-	//We check the number ouput
+	//We check the number output
 	uart::print(0);
 	uart::println();
 	

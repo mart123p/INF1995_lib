@@ -120,5 +120,7 @@ void sound::beep(const uint16_t duration){
 
 void sound::test(){
 	sound::init();
+	sound::success();
+	sound::fail();
 	sound::crazyfrog();
 }

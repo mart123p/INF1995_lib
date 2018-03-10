@@ -5,6 +5,10 @@
 #define F_CPU 8000000
 #include <util/delay.h>
 
+/**
+ * Methods to make some sound and music
+ */
+
 #define B6 236
 #define A6_ 251
 #define A6 268
@@ -46,11 +50,42 @@
 
 
 namespace sound{
+	
+	/**
+	 * Initialize the sound pin
+	 * @return void
+	 */
 	void init();
+	
+	/**
+	 * Play a success sound
+	 * @return void
+	 */
 	void success();
+
+	/**
+	 * Play a fail sound
+	 * @return void
+	 */
 	void fail();
+
+	/**
+	 * Play the music crazy frog
+	 * @return void
+	 */
 	void crazyfrog();
+
+	/**
+	 * Play a beep sound
+	 * @param duration in ms to play beep sound
+	 * @return void
+	 */
 	void beep(const uint16_t duration);
+
+	/**
+	 * Test all the sound functions
+	 * @return void
+	 */
 	void test();
 
 }

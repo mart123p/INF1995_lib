@@ -43,6 +43,9 @@ namespace can{
 	   // Donnees membres - aucun
 
 	};
+	/**
+	 * Test the can functions
+	 */
 	void test();
 }
 

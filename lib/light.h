@@ -43,7 +43,7 @@ namespace light{
 	void off();
 	
 	/**
-	 * Test the LED
+	 * Test the LED functions
 	 * @return void
 	 */
 	void test();

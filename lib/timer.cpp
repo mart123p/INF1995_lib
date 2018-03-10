@@ -1,7 +1,7 @@
 #include "timer.h"
 #include "light.h"
 
-timer::init(uint16_t ms){
+void timer::init(uint16_t ms){
 	
 	//set prescaler to 64 in CTC mode
 	TCCR1B |= (1 << WGM12)|(1 << CS12);
@@ -19,19 +19,17 @@ timer::init(uint16_t ms){
 
 }
 
-
-
-timer::on(){
+void timer::on(){
 	
 	sei();	
 	
 }
-timer::off(){
+
+void timer::off(){
 	
 	cli();	
 	
 }
-
 
 void timer::test(uint16_t ms){
 	

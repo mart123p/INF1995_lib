@@ -1,7 +1,9 @@
 #ifndef UART_H
 #define UART_H
-
 #include <avr/io.h>
+/**
+ * Send various messages via uart. Can be used with the program serieViaUSB
+ */
 
 namespace uart{
 	/**

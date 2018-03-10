@@ -25,6 +25,11 @@ int main()
 		uart::print("\nTesting Memory\n...\n");
 		mem::test();
 		uart::print("\n\nDone testing Memory\n");
+
+		//Can test
+		uart::print("\nTesting ADC\n...\n");
+		can::test();
+		uart::print("\n\nDone testing ADC\n");
 									
 		uart::print("\nTesting PWM\n...");
 		pwm::test();
